@@ -23,18 +23,19 @@ export class AppComponent implements OnInit {
     this.information = 'Espera recuperando información... ';
 
     const appointment = new Appointment($event);
-    this.logService.logAppointment(appointment).subscribe(
-      (result: OperationResponse) => {
-        this.information = $event;
-        this.transports = result.object;
-        this.cd.markForCheck();
-      },
-      (error: any) => {
-        this.information =
-          'Ha ocurrido un error por favor intentalo nuevamente ... ';
-        this.cd.markForCheck();
-      }
-    );
+    console.log(appointment);
+    // this.logService.logAppointment(appointment).subscribe(
+    //   (result: OperationResponse) => {
+    //     this.information = $event;
+    //     this.transports = result.object;
+    //     this.cd.markForCheck();
+    //   },
+    //   (error: any) => {
+    //     this.information =
+    //       'Ha ocurrido un error por favor intentalo nuevamente ... ';
+    //     this.cd.markForCheck();
+    //   }
+    // );
   }
 
   public enableScanner() {

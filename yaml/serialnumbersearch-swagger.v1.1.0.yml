@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Game.Oms.Api.SerialNumberSearch
   description: RESTful API to allow checking if GAME suppied a specific Serial Number or not
-  version: v1.0.0
+  version: v1.1.0
 paths:
   /api/Search:
     get:
@@ -32,7 +32,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SerialNumberDetails'
+                type: array
+                items:
+                  $ref: '#/components/schemas/SerialNumberDetails'
         '400':
           description: Bad Request
           content:
