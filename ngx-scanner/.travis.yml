@@ -1,0 +1,45 @@
+# Travis CI configuration file.
+
+sudo: required
+
+language: node_js
+
+node_js:
+  - '13'
+  - '10'
+
+addons:
+  chrome: stable
+
+stages:
+  - test
+  - compile
+  - name: deploy
+    # require the branch name to be master (note for PRs this is the base branch name)
+    if: branch = master
+
+jobs:
+  include:
+
+    - stage: compile
+      script:
+        - npx npm-install-peers
+        - npm run build
+        - npm run build:demo
+
+    - stage: test
+      script:
+        - npm run lint
+        - npm run test
+        # - npm run e2e
+
+    - stage: deploy
+      script:
+        - npm run build:gh-pages # rebuild for gh-pages
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        local_dir: dist/gh-pages
+        on:
+          branch: master

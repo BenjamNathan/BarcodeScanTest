@@ -1,0 +1,97 @@
+{
+  "name": "@zxing/ngx-scanner",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zxing-js/ngx-scanner"
+  },
+  "authors": [
+    {
+      "name": "David Werth",
+      "email": "werth.david@gmail.com"
+    },
+    {
+      "name": "Luiz Machado",
+      "email": "machado@odahcam.com"
+    }
+  ],
+  "keywords": [
+    "angular",
+    "zxing",
+    "qr-code",
+    "barcode",
+    "scanner",
+    "scan"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zxing-js/ngx-scanner/issues"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "./node_modules/.bin/ng serve --host 0.0.0.0 --ssl true",
+    "build": "ng build zxing-scanner && cp README.md ./dist/zxing-scanner",
+    "build:demo": "ng build zxing-scanner-demo --prod",
+    "build:gh-pages": "ng build zxing-scanner-demo --prod --base-href /ngx-scanner/ --output-path dist/gh-pages",
+    "test": "ng test zxing-scanner --watch=false --browsers=ChromeHeadless && ng test zxing-scanner-demo --watch=false --browsers=ChromeHeadless",
+    "lint": "ng lint zxing-scanner && ng lint zxing-scanner-demo",
+    "e2e": "ng e2e",
+    "docs": "npm run docs:build",
+    "docs:build": "compodoc -p tsconfig.json -n zxing-scanner -d docs --hideGenerator",
+    "docs:serve": "npm run docs:build -- -s",
+    "docs:watch": "npm run docs:build -- -s -w",
+    "publish:dist": "cd ./dist/zxing-scanner && npm publish --access=public",
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove ZXing for JS? You can now donate to our open collective:\\u001b[22m\\u001b[39m\\n > \\u001b[34mhttps://opencollective.com/zxing-js/donate\\u001b[0m')\"",
+    "deploy:demo:ngh": "npm run build:gh-pages && npx ngh --dir=dist/gh-pages"
+  },
+  "dependencies": {
+    "@angular/animations": "10.1.6",
+    "@angular/cdk": "10.2.4",
+    "@angular/common": "10.1.6",
+    "@angular/core": "10.1.6",
+    "@angular/forms": "10.1.6",
+    "@angular/material": "10.2.4",
+    "@angular/platform-browser": "10.1.6",
+    "@angular/platform-browser-dynamic": "10.1.6",
+    "@angular/router": "10.1.6",
+    "@angular/service-worker": "10.1.6",
+    "@zxing/library": "^0.17.1",
+    "rxjs": "^6.6.3",
+    "tslib": "^2.0.3"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.1001.6",
+    "@angular-devkit/build-ng-packagr": "~0.1001.6",
+    "@angular-devkit/core": "10.1.7",
+    "@angular/cli": "10.1.7",
+    "@angular/compiler": "10.1.6",
+    "@angular/compiler-cli": "10.1.6",
+    "@angular/language-service": "10.1.6",
+    "@compodoc/compodoc": "^1.1.11",
+    "@types/jasmine": "^3.5.14",
+    "@types/jasminewd2": "~2.0.8",
+    "@types/node": "^14.11.8",
+    "angular-cli-ghpages": "^0.6.2",
+    "codelyzer": "^6.0.1",
+    "jasmine-core": "^3.6.0",
+    "jasmine-spec-reporter": "^6.0.0",
+    "karma": "^5.2.3",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-cli": "^2.0.0",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
+    "karma-jasmine": "^4.0.1",
+    "karma-jasmine-html-reporter": "^1.5.4",
+    "ng-packagr": "^10.1.2",
+    "npm-install-peers": "^1.2.1",
+    "protractor": "^7.0.0",
+    "ts-node": "^9.0.0",
+    "tslint": "^5.20.1",
+    "typescript": "4.0.3",
+    "zone.js": "~0.11.1"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/zxing-js"
+  }
+}
