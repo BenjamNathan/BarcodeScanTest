@@ -7,15 +7,14 @@
                       <i class="la la-gear"></i>
                   </span>
                   <h3 class="kt-portlet__head-title">
-                      Acerca el código QR
+                      Scan a barcode with this
                   </h3>
               </div>
           </div>
           <div class="kt-portlet__body">
               <zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
               </zxing-scanner>
-              <button (click)="enableScanner()" type="button" class="btn btn-success">LEER
-                  OTRO</button>
+              <button (click)="enableScanner()" type="button" class="btn btn-success">Turn scanner on and off</button>
           </div>
       </div>
   </div>
@@ -25,9 +24,9 @@
           <div class="kt-portlet__body">
               <div class="kt-callout__body">
                   <div class="kt-callout__content">
-                      <h3 class="kt-callout__title">Información sobre el folio</h3>
+                      <h3 class="kt-callout__title">Scanned info should appear below:</h3>
                       <h3 class="kt-callout__desc">
-                          {{information}}
+                          {{code}}
                       </h3>
 
                       <div class="alert alert-primary fade show" role="alert"

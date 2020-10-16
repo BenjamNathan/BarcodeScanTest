@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LogService } from './log.service';
 import { Appointment } from './models/appointment.model';
 import { OperationResponse } from './models/response.model';
@@ -7,12 +7,15 @@ import { OperationResponse } from './models/response.model';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   scannerEnabled = false;
   transports: Transport[] = [];
   information =
     'No se ha detectado información de ningún código. Acerque un código QR para escanear.';
+
+  code: Appointment;
 
   constructor(private logService: LogService, private cd: ChangeDetectorRef) {}
 
@@ -23,7 +26,7 @@ export class AppComponent implements OnInit {
     this.information = 'Espera recuperando información... ';
 
     const appointment = new Appointment($event);
-    console.log(appointment);
+    this.code = new Appointment($event);
     // this.logService.logAppointment(appointment).subscribe(
     //   (result: OperationResponse) => {
     //     this.information = $event;
