@@ -1,15 +1,13 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { LogService } from './log.service';
-import { Appointment } from './models/appointment.model';
-import { OperationResponse } from './models/response.model';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BarcodeFormat } from '@zxing/library';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo = null;
 
@@ -17,7 +15,6 @@ export class AppComponent implements OnInit {
   hasPermission: boolean;
 
   scannerEnabled = false;
-  transports: Transport[] = [];
   information =
     'No information detected yet.';
 
@@ -25,29 +22,10 @@ export class AppComponent implements OnInit {
       BarcodeFormat.CODE_39
     ];
 
-  // code: Appointment;
-
-  constructor(private logService: LogService, private cd: ChangeDetectorRef) {}
-
-  ngOnInit() {}
+  constructor() {}
 
   public scanSuccessHandler($event: any) {
     this.information = ($event);
-
-    const appointment = new Appointment($event);
-    // this.code = new Appointment($event);
-    // this.logService.logAppointment(appointment).subscribe(
-    //   (result: OperationResponse) => {
-    //     this.information = $event;
-    //     this.transports = result.object;
-    //     this.cd.markForCheck();
-    //   },
-    //   (error: any) => {
-    //     this.information =
-    //       'Error occured try again ... ';
-    //     this.cd.markForCheck();
-    //   }
-    // );
   }
 
   public enableScanner() {
@@ -69,14 +47,4 @@ export class AppComponent implements OnInit {
   onHasPermission(has: boolean) {
     this.hasPermission = has;
   }
-}
-
-interface Transport {
-  plates: string;
-  slot: Slot;
-}
-
-interface Slot {
-  name: string;
-  description: string;
 }

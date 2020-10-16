@@ -1,32 +1,19 @@
-<header>    
-      <select matNativeControl matInput (change)="onDeviceSelectChange($event.target.value)">
+<header>
+    <select matNativeControl matInput (change)="onDeviceSelectChange($event.target.value)">
         <option value="" [selected]="!currentDevice">No Device Selected</option>
         <option *ngFor="let device of availableDevices" [value]="device.deviceId"
-          [selected]="currentDevice && device.deviceId === currentDevice.deviceId">{{device.label}}</option>
-      </select>
-  </header>
+            [selected]="currentDevice && device.deviceId === currentDevice.deviceId">{{device.label}}</option>
+    </select>
+</header>
 <div class="row">
-    <div class="col-12 col-lg-6">
-        <div class="kt-portlet kt-portlet--tab">
-            <div class="kt-portlet__head">
-                <div class="kt-portlet__head-label">
-                    <span class="kt-portlet__head-icon kt-hide">
-                        <i class="la la-gear"></i>
-                    </span>
-                    <h3 class="kt-portlet__head-title">
-                        Scan a barcode with this
-                    </h3>
-                </div>
-            </div>
-            <div class="kt-portlet__body">
-                <zxing-scanner *ngIf="scannerEnabled" (scanSuccess)="scanSuccessHandler($event)"
-                    [(device)]="currentDevice"  (permissionResponse)="onHasPermission($event)"
-                    (camerasFound)="onCamerasFound($event)" [formats]="formatsEnabled">
-                </zxing-scanner>
-                <button (click)="enableScanner()" type="button" class="btn btn-success">Turn scanner on and off</button>
-            </div>
-        </div>
-    </div>
+    <h3>
+        Scan a barcode with this
+    </h3>
+        <zxing-scanner *ngIf="scannerEnabled" (scanSuccess)="scanSuccessHandler($event)" [(device)]="currentDevice"
+            (permissionResponse)="onHasPermission($event)" (camerasFound)="onCamerasFound($event)"
+            [formats]="formatsEnabled">
+        </zxing-scanner>
+        <button (click)="enableScanner()" type="button" class="btn btn-success">Turn scanner on and off</button>
 
     <div>
         <strong>{{ information }}</strong>
